@@ -1,0 +1,77 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+abstract class Pet {
+    String name;
+    Pet(String name){
+        this.name = name;
+    }
+    public void wakeUp(){
+        MakeSound();
+    }
+    abstract void MakeSound();
+}
+class Cat extends Pet{
+
+    Cat(String name) {
+        super(name);
+    }
+
+    public void MakeSound() {
+        System.out.print(super.name+" the Cat says: Meow! Meow! ");
+    }
+    
+}
+
+
+class Dog extends Pet {
+
+    Dog(String name) {
+        super(name);
+    }
+
+    public void MakeSound() {
+        System.out.print(super.name+" the Dog says: Woof! Woof! ");
+        
+    }
+    
+}
+class Polly extends Pet{
+    Polly(String name)
+    {
+        super(name);
+    }
+    public void MakeSound(){
+        System.out.print(super.name+" the Parrot says: Hello! Hello! ");
+    }
+}
+
+public class PetMain{
+    public static void main(String[] args){
+        Scanner input=new Scanner(System.in);
+        String givendata=input.nextLine();
+        String[] inputdata=givendata.split(" ");
+        ArrayList<Pet> Petanimals=new ArrayList<Pet>();
+        for (int i=1;i<inputdata.length;i=i+2)
+        {
+            if(inputdata[i].equals("Kitty"))
+            {
+                Cat a_cat=new Cat("Kitty");
+                Petanimals.add(a_cat);
+            }
+            else if(inputdata[i].equals("Doggie"))
+            {
+                Dog a_dog=new Dog("Doggie");
+                Petanimals.add(a_dog);
+            }
+            else if(inputdata[i].equals("Polly"))
+            {
+                Petanimals.add(new Polly("Polly"));
+            }
+        }
+        for(Pet PetMain:Petanimals)
+        {
+            PetMain.MakeSound();
+        }
+        System.out.println(Petanimals.size()+" ");
+    }
+}
